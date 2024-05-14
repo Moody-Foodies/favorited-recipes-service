@@ -1,6 +1,6 @@
 class Api::V1::FavoriteRecipesController < ApplicationController
   def create
-    FavoriteRecipe.create!(recipe_data)
+    FavoriteRecipe.create_new_record(recipe_data)
     render json: {data: "Recipe added to favorites"}, status: 201
   end
 
