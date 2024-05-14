@@ -15,6 +15,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_14_212803) do
   enable_extension "plpgsql"
 
   create_table "favorited_recipes", force: :cascade do |t|
+    t.integer "user_id"
     t.string "name"
     t.string "description"
     t.integer "time_to_cook"
