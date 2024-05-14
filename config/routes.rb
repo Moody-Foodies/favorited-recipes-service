@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :favorited_recipes, only: [:create]
+      resources :favorite_recipes, only: [:create]
     end
   end
 end

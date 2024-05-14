@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Post Request with New Favorited Recipe" do
+RSpec.describe "Post Request with New Favorite Recipe" do
   before(:each) do
     @headers = { "CONTENT_TYPE" => "application/json" }
     @body = {
@@ -18,16 +18,16 @@ RSpec.describe "Post Request with New Favorited Recipe" do
   end
 
   describe '#happy path' do
-    it 'can recieve a post request with the correct data and create a new record of the favorited recipe' do
-      expect(FavoritedRecipes.all.count).to eq(0)
+    it 'can recieve a post request with the correct data and create a new record of the favorite recipe' do
+      expect(FavoriteRecipe.all.count).to eq(0)
 
-      post "/api/v1/favorited_recipes", headers: @headers, params: JSON.generate(@body)
+      post "/api/v1/favorite_recipes", headers: @headers, params: JSON.generate(@body)
 
       expect(response).to be_successful
       expect(response.status).to eq(201)
-      expect(FavoritedRecipe.all.count).to eq(1)
+      expect(FavoriteRecipe.all.count).to eq(1)
 
-      recipe = FavoritedRecipe.find(@body[:id])
+      recipe = FavoriteRecipe.find(@body[:id])
       
       expect(recipe.id).to eq(@body[:id])
       expect(recipe.user_id).to eq(@body[:user_id])
