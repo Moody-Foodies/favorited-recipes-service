@@ -9,7 +9,7 @@ RSpec.describe "Get Favorite Recipes via GET HTTP Request" do
 
   describe '#happy path' do
     it 'can return all the favorite recipes for a specific user_id' do
-      get "/api/v1/favorite_recipes", headers: @headers
+      get "/api/v1/favorite_recipes?user_id=1", headers: @headers
 
       expect(response).to be_successful
       expect(response.status).to eq(200)
