@@ -57,5 +57,24 @@ RSpec.describe "Post Request with New Favorite Recipe" do
       expect(result[:errors]).to have_key(:detail)
       expect(result[:errors][:detail]).to eq("Validation failed: Health benefits can't be blank, Ingredients can't be blank, Instructions can't be blank")
     end
+
+    it 'will not create a new record if there is already a record with that recipe and user_id combination' do
+      post "/api/v1/favorite_recipes", headers: @headers, params: JSON.generate(@body)
+
+      expect(response).to be_successful
+      expect(response.status).to eq(201)
+
+      post "/api/v1/favorite_recipes", headers: @headers, params: JSON.generate(@body)
+
+      expect(response).not_to be_successful
+      expect(response.status).to eq(422)
+
+      result = JSON.parse(response.body, symbolize_names: true)
+
+      expect(result).to have_key(:errors)
+      expect(result[:errors]).to be_a(Hash)
+      expect(result[:errors]).to have_key(:detail)
+      expect(result[:errors][:detail]).to eq("Validation failed: Id has already been taken")
+    end
   end
 end
