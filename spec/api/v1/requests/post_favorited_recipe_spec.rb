@@ -36,8 +36,8 @@ RSpec.describe "Post Request with New Favorite Recipe" do
       expect(recipe.time_to_cook).to eq(@body[:time_to_cook])
       expect(recipe.nutrient).to eq(@body[:nutrient])
       expect(recipe.health_benefits).to eq(@body[:health_benefits])
-      expect(recipe.ingredients).to eq(@body[:ingredients])
-      expect(recipe.instructions).to eq(@body[:instructions])
+      expect(recipe.ingredients).to eq(@body[:ingredients].join("*separator*"))
+      expect(recipe.instructions).to eq(@body[:instructions].join("*separator*"))
     end
   end
 

@@ -8,3 +8,5 @@ class FavoriteRecipe < ApplicationRecord
     FavoriteRecipe.create!(attributes)
   end
 end
+
+# will need to turn the ingredients and instructions back into arrays in the serializer before sending the recipe back to the gateway
