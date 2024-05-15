@@ -43,4 +43,32 @@ RSpec.describe FavoriteRecipe do
       end
     end
   end
+
+  describe '#instance methods' do
+    describe '#split_ingredients' do
+      it 'will split the ingredients string at the separators and return an array of strings with each ingredient listed' do
+        recipe = create(:favorite_recipe)
+
+        expect(recipe.ingredients).to be_a(String)
+
+        expect(recipe.split_ingredients).to be_a(Array)
+        expect(recipe.split_ingredients.count).to eq(2)
+        expect(recipe.split_ingredients.first).to be_a(String)
+        expect(recipe.split_ingredients.last).to be_a(String)
+      end
+    end
+
+    describe '#split_instructions' do
+      it 'will split the instructions string at the separators and return an array of strings with each instruction listed' do
+        recipe = create(:favorite_recipe)
+
+        expect(recipe.instructions).to be_a(String)
+
+        expect(recipe.split_instructions).to be_a(Array)
+        expect(recipe.split_instructions.count).to eq(2)
+        expect(recipe.split_instructions.first).to be_a(String)
+        expect(recipe.split_instructions.last).to be_a(String)
+      end
+    end
+  end
 end

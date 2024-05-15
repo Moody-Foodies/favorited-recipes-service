@@ -10,6 +10,12 @@ class FavoriteRecipe < ApplicationRecord
     end
     FavoriteRecipe.create!(attributes)
   end
-end
 
-# will need to turn the ingredients and instructions back into arrays in the serializer before sending the recipe back to the gateway
+  def split_ingredients
+    self.ingredients.split("*separator*")
+  end
+
+  def split_instructions
+    self.instructions.split("*separator*")
+  end
+end
