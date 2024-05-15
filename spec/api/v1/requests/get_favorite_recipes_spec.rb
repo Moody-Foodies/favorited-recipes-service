@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "Get Favorite Recipes via GET HTTP Request" do
   before(:each) do
     @headers = {"CONTENT_TYPE" => "application/json"}
-    @recipes = create_list(:favorite_recipe, 3)
+    @recipes = create_list(:favorite_recipe, 3, user_id: 1)
     @recipe_2 = create(:favorite_recipe, user_id: 2)
   end
 
