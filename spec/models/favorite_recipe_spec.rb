@@ -42,6 +42,12 @@ RSpec.describe FavoriteRecipe do
         expect(recipe).to be_a(FavoriteRecipe)
       end
     end
+
+    describe '.user_favorites(user_id)' do
+      it 'finds all favorited recipes for a given user' do
+
+      end
+    end
   end
 
   describe '#instance methods' do

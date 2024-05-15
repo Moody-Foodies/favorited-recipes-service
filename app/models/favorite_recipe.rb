@@ -18,4 +18,8 @@ class FavoriteRecipe < ApplicationRecord
   def split_instructions
     self.instructions.split("*separator*")
   end
+
+  def self.user_favorites(user_id)
+    where("user_id = #{user_id}")
+  end
 end
