@@ -6,13 +6,9 @@ orbs:
   ruby: circleci/ruby@2.1.2
 
 workflows:
-  build_and_test:
+  run_tests:
     jobs:
-      - build
-      - checking
-      - test:
-          requires:
-            - build
+      - ruby/rspec-test
   heroku_deploy:
       jobs:
         - heroku/deploy-via-git
