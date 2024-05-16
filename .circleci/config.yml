@@ -5,16 +5,17 @@ orbs:
   heroku: circleci/heroku@0.0.10
   ruby: circleci/ruby@2.1.2
 jobs:
-  test:
-    steps:
-      - checkout
-      - ruby/install-deps
-      - ruby/rspec-test
+  build:
+    docker:
+      - image: cimg/ruby:3.2.2
+  steps:
+    - run:
+        command: bundle exec rspec
 
 workflows:
   run_tests:
     jobs:
-      - test
+      - build
   heroku_deploy:
     jobs:
       - heroku/deploy-via-git
