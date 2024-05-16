@@ -23,21 +23,17 @@
 
 version: '2.1'
 orbs:
-  node: circleci/node@5.2.0
   ruby: circleci/ruby@2.1.2
 jobs:
   build:
     docker:
-      - image: cimg/ruby:2.1.2-node
+      - image: cimg/ruby:2.1.2
     steps:
       - checkout
       - ruby/install-deps
-      - node/install-packages:
-          cache-key: yarn.lock
-          pkg-manager: yarn
   checking:
     docker:
-      - image: cimg/ruby:3.2.2-node
+      - image: cimg/ruby:2.1.2
     steps:
       - checkout
       - ruby/install-deps
@@ -46,7 +42,7 @@ jobs:
           label: Inspecting with Rubocop
   test:
     docker:
-      - image: cimg/ruby:3.2.2-node
+      - image: cimg/ruby:2.1.2
       - environment:
           POSTGRES_DB: favorite_recipes_service_test
           POSTGRES_PASSWORD: ''
@@ -63,9 +59,6 @@ jobs:
     steps:
       - checkout
       - ruby/install-deps
-      - node/install-packages:
-          cache-key: yarn.lock
-          pkg-manager: yarn
       - run:
           command: dockerize -wait tcp://localhost:5432 -timeout 1m
           name: Wait for DB
