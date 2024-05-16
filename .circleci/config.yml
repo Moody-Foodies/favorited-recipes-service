@@ -21,7 +21,7 @@ jobs:
       - run:
           name: "Say hello"
           command: "echo Hello, World!"
-          
+
   rspec-tests:
     docker:
       - image: cimg/base:current
@@ -39,3 +39,4 @@ workflows:
     # Inside the workflow, you define the jobs you want to run.
     jobs:
       - say-hello
+      - rspec-tests
