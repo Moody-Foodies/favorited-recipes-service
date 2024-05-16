@@ -32,9 +32,9 @@ jobs:
       # run tests!
       - run:
         name: Run RSpec Tests
-        command: |
-        TESTFILES=$(circleci tests glob “spec/**/*_spec.rb” | circleci tests split)
-        bundle exec rspec — ${TESTFILES}
+        command: 
+          TESTFILES=$(circleci tests glob “spec/**/*_spec.rb”)
+          bundle exec rspec — ${TESTFILES}
 
 workflows:
   heroku_deploy:
