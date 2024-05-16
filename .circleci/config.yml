@@ -14,12 +14,22 @@ jobs:
           POSTGRES_DB: favorited_recipes_service_test
           POSTGRES_USER: postgres
         image: circleci/postgres:9.5-alpine
+    environment:
+      PGHOST: 127.0.0.1
+      PGPASSWORD: ''
+      PGUSER: postgres
+      RAILS_ENV: test
     steps:
       - checkout
       - ruby/install-deps  # Uses the ruby orb to install dependencies
       - run:
-          name: Run Tests
-          command: bundle exec rspec
+          command: dockerize -wait tcp://localhost:5432 -timeout 1m
+          name: Wait for DB
+      - run:
+          command: bundle exec rails db:schema:load --trace
+          name: Database setup
+      - ruby/rspec-test:
+          include: spec/**/*_spec.rb
 
 workflows:
   version: 2
