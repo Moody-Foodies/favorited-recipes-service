@@ -27,13 +27,13 @@ orbs:
 jobs:
   build:
     docker:
-      - image: cimg/ruby:2.1.2
+      - image: cimg/ruby:2.1.2-node
     steps:
       - checkout
       - ruby/install-deps
   checking:
     docker:
-      - image: cimg/ruby:2.1.2
+      - image: cimg/ruby:2.1.2-node
     steps:
       - checkout
       - ruby/install-deps
@@ -42,7 +42,7 @@ jobs:
           label: Inspecting with Rubocop
   test:
     docker:
-      - image: cimg/ruby:2.1.2
+      - image: cimg/ruby:2.1.2-node
       - environment:
           POSTGRES_DB: favorite_recipes_service_test
           POSTGRES_PASSWORD: ''
