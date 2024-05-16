@@ -9,6 +9,4 @@ orbs:
 workflows:
   heroku_deploy:
       jobs:
-        - heroku/deploy-via-git:
-          post-steps:
-              - run: rails db:migrate
+        - heroku/deploy-via-git
