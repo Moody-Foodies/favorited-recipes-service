@@ -21,6 +21,16 @@ jobs:
       - run:
           name: "Say hello"
           command: "echo Hello, World!"
+          
+  rspec-tests:
+    docker:
+      - image: cimg/base:current
+    
+    steps:
+      - checkout
+      - run:
+          name: "Rspec Test Suite"
+          command: bundle exec rspec
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/workflows/ & https://circleci.com/docs/configuration-reference/#workflows
