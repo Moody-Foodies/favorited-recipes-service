@@ -20,19 +20,19 @@ jobs:
           POSTGRES_USER: favorited-recipes-service
           POSTGRES_DB: favorite_recipes_service_test
           POSTGRES_PASSWORD: ""
-      steps:
-        - checkout
-        - run:
-          name: Create Database
-          command: bundle exec rake db:create
-        - run:
-          name: Load Database Schema
-          command: bundle exec rake db:schema:load
-        - run:
-          name: Run RSpec Tests
-          commad: command: |
-           TESTFILES=$(circleci tests glob “spec/**/*_spec.rb” |    circleci tests split)
-         bundle exec rspec — ${TESTFILES}
+    steps:
+      - checkout
+      - run:
+        name: Create Database
+        command: bundle exec rake db:create
+      - run:
+        name: Load Database Schema
+        command: bundle exec rake db:schema:load
+      - run:
+        name: Run RSpec Tests
+        command: |
+          TESTFILES=$(circleci tests glob “spec/**/*_spec.rb” |    circleci tests split)
+        bundle exec rspec — ${TESTFILES}
 
 # # Orchestrate jobs using workflows
 # # See: https://circleci.com/docs/workflows/ & https://circleci.com/docs/configuration-reference/#workflows
