@@ -13,7 +13,7 @@ jobs:
       - environment:
           POSTGRES_DB: favorited_recipes_service_test
           POSTGRES_USER: postgres
-        image: circleci/postgres:14.10
+        image: cimg/postgres:16.3.0
     steps:
       - checkout
       - ruby/install-deps  # Uses the ruby orb to install dependencies
