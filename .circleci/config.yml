@@ -23,8 +23,8 @@
 
 version: '2.1'
 orbs:
-  node: circleci/node@x.y
-  ruby: circleci/ruby@x.y
+  node: circleci/node@16.15.1
+  ruby: circleci/ruby@3.2.2
 jobs:
   build:
     docker:
