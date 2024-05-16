@@ -4,11 +4,17 @@ version: 2.1
 orbs:
   heroku: circleci/heroku@0.0.10
   ruby: circleci/ruby@2.1.2
+jobs:
+  test:
+    steps:
+      - checkout
+      - ruby/install-deps
+      - ruby/rspec-test
 
 workflows:
   run_tests:
     jobs:
-      - ruby/rspec-test
+      - test
   heroku_deploy:
-      jobs:
-        - heroku/deploy-via-git
+    jobs:
+      - heroku/deploy-via-git
