@@ -59,11 +59,15 @@ RSpec.describe "Get Favorite Recipes via GET HTTP Request" do
     it 'return appropriate response if the user_id is missing from the query' do
       get "/api/v1/favorite_recipes", headers: @headers
 
-      expect(response)._not be_successful
-      expect(response.status).to eq(200)
+      expect(response).to_not be_successful
+      expect(response.status).to eq(400)
 
       result = JSON.parse(response.body, symbolize_names: true)
-      require 'pry' ; binding.pry
+      
+      expect(result).to have_key(:errors)
+      expect(result[:errors]).to be_a(Hash)
+      expect(result[:errors]).to have_key(:detail)
+      expect(result[:errors][:detail]).to eq("User ID not provided in request query. Please include a user_id")
     end
   end
 end
