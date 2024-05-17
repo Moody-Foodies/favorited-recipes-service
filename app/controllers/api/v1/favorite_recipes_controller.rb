@@ -7,7 +7,7 @@ class Api::V1::FavoriteRecipesController < ApplicationController
   end
 
   def index
-    recipes = FavoriteRecipe.user_favorites(params[:user_id])
+    recipes = FavoriteRecipe.user_favorites(@user_id)
     render json: FavoriteRecipeSerializer.serialize_recipes(recipes)
   end
 
