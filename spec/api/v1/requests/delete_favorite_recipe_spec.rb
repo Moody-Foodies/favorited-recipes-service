@@ -8,7 +8,7 @@ RSpec.describe 'Delete Favorite Recipe via HTTP Request' do
     @recipe_2 = FavoriteRecipe.all[1]
     @recipe_3 = FavoriteRecipe.all[2]
 
-    @body = {user_id: @recipe_1.user_id, id: @recipe_1.id}
+    @body = {user_id: @recipe_1.user_id, id: @recipe_1.recipe_id}
     @bad_body_1 = {user_id: @recipe_1.user_id, id: 123123123123123}
     @bad_body_2 = {user_id: @recipe_1.user_id}
   end
@@ -38,7 +38,7 @@ RSpec.describe 'Delete Favorite Recipe via HTTP Request' do
       expect(result).to have_key(:errors)
       expect(result[:errors]).to be_a(Hash)
       expect(result[:errors]).to have_key(:detail)
-      expect(result[:errors][:detail]).to eq("")
+      expect(result[:errors][:detail]).to eq("No favorited recipe found with that combination of user and recipe id.")
     end
 
     it 'will respond with the correct error message if the request is missing information' do
@@ -52,7 +52,7 @@ RSpec.describe 'Delete Favorite Recipe via HTTP Request' do
       expect(result).to have_key(:errors)
       expect(result[:errors]).to be_a(Hash)
       expect(result[:errors]).to have_key(:detail)
-      expect(result[:errors][:detail]).to eq("")
+      expect(result[:errors][:detail]).to eq("Unable to process request due to missing information")
     end
   end
 end
