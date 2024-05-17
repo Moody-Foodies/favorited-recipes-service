@@ -97,7 +97,7 @@ response:
 }
 ```
 
-### POST /api/v1/moods
+### POST /api/v1/favorite_recipes
 - Request Body:
 ```json
 { 
