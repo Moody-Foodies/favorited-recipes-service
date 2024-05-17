@@ -47,7 +47,10 @@ RSpec.describe FavoriteRecipe do
 
     describe '.user_favorites(user_id)' do
       it 'finds all favorited recipes for a given user' do
+        recipes = create_list(:favorite_recipe, 3)
 
+        expect(FavoriteRecipe.user_favorites(1).count).to eq(3)
+        expect(FavoriteRecipe.user_favorites(1)).to match_array(recipes)
       end
     end
   end
