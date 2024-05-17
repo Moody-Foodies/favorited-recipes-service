@@ -53,6 +53,16 @@ RSpec.describe FavoriteRecipe do
         expect(FavoriteRecipe.user_favorites(1)).to match_array(recipes)
       end
     end
+
+    describe '.find_single_favorite(user_id, recipe_id)' do
+      it 'finds the favorite recipe with the given user_id and recipe_id' do
+        create_list(:favorite_recipe, 3)
+        recipe_id = FavoriteRecipe.all.first.recipe_id
+        recipe = FavoriteRecipe.all.first
+
+        expect(FavoriteRecipe.find_single_favorite(1, recipe_id)).to eq(recipe)
+      end
+    end
   end
 
   describe '#instance methods' do

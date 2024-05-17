@@ -1,7 +1,7 @@
 class FavoriteRecipe < ApplicationRecord
-  validates :id, :user_id, :name, :description, :nutrient, :health_benefits, :image, :ingredients, :instructions, presence: true
+  validates :id, :recipe_id, :user_id, :name, :description, :nutrient, :health_benefits, :image, :ingredients, :instructions, presence: true
   validates :time_to_cook, presence: true, numericality: true
-  validates :id, uniqueness: {scope: :user_id}
+  validates :recipe_id, uniqueness: {scope: :user_id}
 
   def self.create_new_record(attributes)
     if attributes[:ingredients] && attributes[:instructions]
@@ -21,5 +21,9 @@ class FavoriteRecipe < ApplicationRecord
 
   def self.user_favorites(user_id)
     where("user_id = #{user_id}")
+  end
+
+  def self.find_single_favorite(user_id, recipe_id)
+    where("user_id = #{user_id} AND recipe_id = #{recipe_id}").first
   end
 end
