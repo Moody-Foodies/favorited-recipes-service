@@ -1,9 +1,10 @@
 class FavoriteRecipe < ApplicationRecord
-  validates :id, :recipe_id, :user_id, :name, :description, :nutrient, :health_benefits, :image, :ingredients, :instructions, presence: true
+  validates :recipe_id, :user_id, :name, :description, :nutrient, :health_benefits, :image, :ingredients, :instructions, presence: true
   validates :time_to_cook, presence: true, numericality: true
   validates :recipe_id, uniqueness: {scope: :user_id}
 
   def self.create_new_record(attributes)
+    attributes[:recipe_id] = attributes.delete :id
     if attributes[:ingredients] && attributes[:instructions]
       attributes[:ingredients] = attributes[:ingredients].join("*separator*")
       attributes[:instructions] = attributes[:instructions].join("*separator*")

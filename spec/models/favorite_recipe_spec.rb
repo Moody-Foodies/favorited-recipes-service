@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe FavoriteRecipe do
   describe 'Validations' do
-    it { should validate_presence_of(:id) }
     it { should validate_presence_of(:recipe_id) }
     it { should validate_presence_of(:user_id) }
     it { should validate_presence_of(:name) }
