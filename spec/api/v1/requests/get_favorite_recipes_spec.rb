@@ -54,4 +54,33 @@ RSpec.describe "Get Favorite Recipes via GET HTTP Request" do
       end
     end
   end
+
+  describe "#sad path" do
+    it 'return appropriate response if the user_id is missing from the query' do
+      get "/api/v1/favorite_recipes", headers: @headers
+
+      expect(response).to_not be_successful
+      expect(response.status).to eq(400)
+
+      result = JSON.parse(response.body, symbolize_names: true)
+      
+      expect(result).to have_key(:errors)
+      expect(result[:errors]).to be_a(Hash)
+      expect(result[:errors]).to have_key(:detail)
+      expect(result[:errors][:detail]).to eq("User ID not provided in request query. Please include a user_id")
+    end
+
+    it 'return appropriate response if the user_id passed has no recipes yet' do
+      get "/api/v1/favorite_recipes?user_id=3", headers: @headers
+
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+
+      result = JSON.parse(response.body, symbolize_names: true)
+
+      expect(result).to have_key(:data)
+      expect(result[:data]).to be_a(Array)
+      expect(result[:data]).to be_empty
+    end
+  end
 end
