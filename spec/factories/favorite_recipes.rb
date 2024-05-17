@@ -2,6 +2,7 @@ FactoryBot.define do
   factory :favorite_recipe do
     id {Faker::Number.number(digits: 5)}
     user_id {1}
+    recipe_id {Faker::Number.number(digits: 5)}
     name {Faker::Food.dish}
     description {Faker::Food.description}
     time_to_cook {Faker::Number.number(digits: 5)}
