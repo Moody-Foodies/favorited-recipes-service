@@ -54,4 +54,16 @@ RSpec.describe "Get Favorite Recipes via GET HTTP Request" do
       end
     end
   end
+
+  describe "#sad path" do
+    it 'return appropriate response if the user_id is missing from the query' do
+      get "/api/v1/favorite_recipes", headers: @headers
+
+      expect(response)._not be_successful
+      expect(response.status).to eq(200)
+
+      result = JSON.parse(response.body, symbolize_names: true)
+      require 'pry' ; binding.pry
+    end
+  end
 end
