@@ -19,8 +19,7 @@ RSpec.describe FavoriteRecipe do
     describe '.create_new_record' do
       it 'joins the arrays that come with instructions and ingredients before storing them as attributes and creating the db record' do
         attributes = {
-          id: 1,
-          recipe_id: 17553, 
+          id: 17553, 
           user_id: 1,
           name: "Green Lentil Soup",
           description: "This is a very good soup for winter or fall",
