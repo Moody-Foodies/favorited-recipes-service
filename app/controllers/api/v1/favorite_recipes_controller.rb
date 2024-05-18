@@ -25,7 +25,7 @@ class Api::V1::FavoriteRecipesController < ApplicationController
   def get_user_id
     @user_id = params[:user_id]
     unless @user_id
-      message = "User ID not provided in request query. Please include a user_id"
+      message = "Unable to process request due to missing information"
       render json: ErrorMessageSerializer.serialize_json(ErrorMessage.new(message)), status: :bad_request
     end
   end
