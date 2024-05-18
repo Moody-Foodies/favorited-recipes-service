@@ -4,7 +4,7 @@ RSpec.describe "Post Request with New Favorite Recipe" do
   before(:each) do
     @headers = { "CONTENT_TYPE" => "application/json" }
     @body = {
-      id: 17553, 
+      id: 1543,
       user_id: 1,
       name: "Green Lentil Soup",
       description: "This is a very good soup for winter or fall",
@@ -29,9 +29,10 @@ RSpec.describe "Post Request with New Favorite Recipe" do
       expect(response.status).to eq(201)
       expect(FavoriteRecipe.all.count).to eq(1)
 
-      recipe = FavoriteRecipe.find(@body[:id])
+      recipe = FavoriteRecipe.find_by(recipe_id: @body[:id])
       
-      expect(recipe.id).to eq(@body[:id])
+      expect(recipe.id).not_to eq(@body[:id])
+      expect(recipe.recipe_id).to eq(@body[:id])
       expect(recipe.user_id).to eq(@body[:user_id])
       expect(recipe.name).to eq(@body[:name])
       expect(recipe.description).to eq(@body[:description])
@@ -74,7 +75,7 @@ RSpec.describe "Post Request with New Favorite Recipe" do
       expect(result).to have_key(:errors)
       expect(result[:errors]).to be_a(Hash)
       expect(result[:errors]).to have_key(:detail)
-      expect(result[:errors][:detail]).to eq("Validation failed: Id has already been taken")
+      expect(result[:errors][:detail]).to eq("Validation failed: Recipe has already been taken")
     end
   end
 end

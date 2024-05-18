@@ -11,6 +11,16 @@ class Api::V1::FavoriteRecipesController < ApplicationController
     render json: FavoriteRecipeSerializer.serialize_recipes(recipes)
   end
 
+  def destroy
+    recipe = FavoriteRecipe.find_single_favorite(params[:user_id], params[:id])
+    if recipe
+      recipe.delete
+      render json: {}, status: 202
+    else
+      render json: ErrorMessageSerializer.serialize_json(ErrorMessage.new("No favorited recipe found with that combination of user and recipe id.")), status: 404
+    end
+  end
+
   private
   def get_user_id
     @user_id = params[:user_id]

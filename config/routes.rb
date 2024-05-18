@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :favorite_recipes, only: [:create, :index]
+      delete "/favorite_recipes", to: "favorite_recipes#destroy"
     end
   end
 end
