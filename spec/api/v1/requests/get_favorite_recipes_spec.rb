@@ -67,7 +67,7 @@ RSpec.describe "Get Favorite Recipes via GET HTTP Request" do
       expect(result).to have_key(:errors)
       expect(result[:errors]).to be_a(Hash)
       expect(result[:errors]).to have_key(:detail)
-      expect(result[:errors][:detail]).to eq("User ID not provided in request query. Please include a user_id")
+      expect(result[:errors][:detail]).to eq("Unable to process request due to missing information")
     end
 
     it 'return appropriate response if the user_id passed has no recipes yet' do
