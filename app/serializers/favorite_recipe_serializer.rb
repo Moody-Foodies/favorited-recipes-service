@@ -16,7 +16,7 @@ class FavoriteRecipeSerializer
       attributes[:instructions] = recipe.split_instructions
 
       serialized_recipe = {}
-      serialized_recipe[:id] = recipe.id
+      serialized_recipe[:id] = recipe.recipe_id
       serialized_recipe[:type] = "recipe"
       serialized_recipe[:attributes] = attributes
       serialized_recipe[:user_id] = recipe.user_id

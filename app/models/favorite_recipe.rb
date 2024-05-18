@@ -3,13 +3,13 @@ class FavoriteRecipe < ApplicationRecord
   validates :time_to_cook, presence: true, numericality: true
   validates :recipe_id, uniqueness: {scope: :user_id}
 
-  def self.create_new_record(attributes)
-    attributes[:recipe_id] = attributes.delete :id
-    if attributes[:ingredients] && attributes[:instructions]
-      attributes[:ingredients] = attributes[:ingredients].join("*separator*")
-      attributes[:instructions] = attributes[:instructions].join("*separator*")
+  def self.create_new_record(attributes_info)
+    attributes_info[:recipe_id] = attributes_info.delete :id
+    if attributes_info[:ingredients] && attributes_info[:instructions]
+      attributes_info[:ingredients] = attributes_info[:ingredients].join("*separator*")
+      attributes_info[:instructions] = attributes_info[:instructions].join("*separator*")
     end
-    FavoriteRecipe.create!(attributes)
+    FavoriteRecipe.create!(attributes_info)
   end
 
   def split_ingredients
