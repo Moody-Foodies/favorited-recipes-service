@@ -1,3 +1,6 @@
+## Favorite Recipes Service
+- Favorite Recipe Service serve as a microservice for Brain Food Organization. This service has the purpose of saving users' favorite recipes, allowing users to quickly retrieve this information and also delete this information when they desire.
+
 ## Setup
 
 ### Prerequisites
@@ -167,6 +170,8 @@ response:
     }
     ```
 
+## Production Site: 
+[Brain Food Gatewat](https://favorite-recipes-service-7d6cb7e82492.herokuapp.com/)
 
 ## Testing
 This project includes automated tests written with RSpec. To run the tests, execute the following command:
@@ -174,6 +179,18 @@ This project includes automated tests written with RSpec. To run the tests, exec
 ```bash
 bundle exec rspec
 ```
+
+## Contributors
+- Erin Kelley
+    - [LinkedIn](https://www.linkedin.com/in/kelleyej/) | [GitHub](https://github.com/kelleyej)
+- Faisal Nazari
+    - [LinkedIn](https://www.linkedin.com/in/mfaisalnazari/) | [GitHub](https://github.com/mfaisalnazari)
+- Igor Magalhaes
+    - [LinkedIn](https://www.linkedin.com/in/igorrmagalhaess/) | [GitHub](https://github.com/IgorrMagalhaess) 
+- Jack Sweeney
+    - [LinkedIn](https://www.linkedin.com/in/jack-sweeney-024043274/) | [GitHub](https://github.com/JackCSweeney)
+- Laura Long
+    - [LinkedIn](https://www.linkedin.com/in/lauralonggone/) | [GitHub](https://github.com/lalonggone)
 
 ## Contributing
 Contributions are welcome! Feel free to open issues or pull requests.
