@@ -31,6 +31,10 @@ class Api::V1::FavoriteRecipesController < ApplicationController
   end
 
   def recipe_data
-    params.permit(:id, :user_id, :name, :description, :time_to_cook, :nutrient, :health_benefits, :image, ingredients: [], instructions: [])
+    data = params[:attributes].permit(:name, :description, :time_to_cook, :nutrient, :health_benefits, :image, ingredients: [], instructions: [])
+    params.permit(:id, :user_id)
+    data[:id] = params[:id]
+    data[:user_id] = params[:user_id]
+    data
   end
 end
