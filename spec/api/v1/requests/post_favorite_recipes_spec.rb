@@ -6,17 +6,19 @@ RSpec.describe "Post Request with New Favorite Recipe" do
     @body = {
       id: 1543,
       user_id: 1,
-      name: "Green Lentil Soup",
-      description: "This is a very good soup for winter or fall",
-      time_to_cook: 55,
-      nutrient: "Magnesium",
-      health_benefits: "Magnesium is believed to be able to lower levels of stress and assist in sleep.",
-      image: "soup.jpeg",
-      ingredients: ["3 medium carrots, peeled and diced", "3 celery stalks, diced", "2 cups fully-cooked chicken breast, shredded (may be omitted for a vegetarian version)", "½ cup flat leaf Italian parsley, chopped (plus extra for garnish)", "6 cloves of garlic, finely minced", "2 tablespoons olive oil", "28 ounce-can plum tomatoes, drained and rinsed, chopped", "2 cups dried red lentils, rinsed", "salt and black pepper, to taste", "1 large turnip, peeled and diced", "8 cups vegetable stock", "1 medium yellow onion, diced"],
-      instructions: ["To a large dutch oven or soup pot, heat the olive oil over medium heat.", "Add the onion, carrots and celery and cook for 8-10 minutes or until tender, stirring occasionally.", "Add the garlic and cook for an additional 2 minutes, or until fragrant. Season conservatively with a pinch of salt and black pepper.To the pot, add the tomatoes, turnip and red lentils. Stir to combine. Stir in the vegetable stock and increase the heat on the stove to high. Bring the soup to a boil and then reduce to a simmer. Simmer for 20 minutes or until the turnips are tender and the lentils are cooked through.", "Add the chicken breast and parsley. Cook for an additional 5 minutes. Adjust seasoning to taste.", "Serve the soup immediately garnished with fresh parsley and any additional toppings. Enjoy!"]
+      attributes: {
+        name: "Green Lentil Soup",
+        description: "This is a very good soup for winter or fall",
+        time_to_cook: 55,
+        nutrient: "Magnesium",
+        health_benefits: "Magnesium is believed to be able to lower levels of stress and assist in sleep.",
+        image: "soup.jpeg",
+        ingredients: ["3 medium carrots, peeled and diced", "3 celery stalks, diced", "2 cups fully-cooked chicken breast, shredded (may be omitted for a vegetarian version)", "½ cup flat leaf Italian parsley, chopped (plus extra for garnish)", "6 cloves of garlic, finely minced", "2 tablespoons olive oil", "28 ounce-can plum tomatoes, drained and rinsed, chopped", "2 cups dried red lentils, rinsed", "salt and black pepper, to taste", "1 large turnip, peeled and diced", "8 cups vegetable stock", "1 medium yellow onion, diced"],
+        instructions: ["To a large dutch oven or soup pot, heat the olive oil over medium heat.", "Add the onion, carrots and celery and cook for 8-10 minutes or until tender, stirring occasionally.", "Add the garlic and cook for an additional 2 minutes, or until fragrant. Season conservatively with a pinch of salt and black pepper.To the pot, add the tomatoes, turnip and red lentils. Stir to combine. Stir in the vegetable stock and increase the heat on the stove to high. Bring the soup to a boil and then reduce to a simmer. Simmer for 20 minutes or until the turnips are tender and the lentils are cooked through.", "Add the chicken breast and parsley. Cook for an additional 5 minutes. Adjust seasoning to taste.", "Serve the soup immediately garnished with fresh parsley and any additional toppings. Enjoy!"]
+      }
     }
 
-    @bad_body = {id: 12423, user_id: 1, name: "Chicken Stew", description: "Southwestern and tasty", time_to_cook: 32, nutrient: "Folic Acid", image: "stew.jpeg"}
+    @bad_body = {id: 12423, user_id: 1, attributes: {name: "Chicken Stew", description: "Southwestern and tasty", time_to_cook: 32, nutrient: "Folic Acid", image: "stew.jpeg"}}
   end
 
   describe '#happy path' do
@@ -34,13 +36,13 @@ RSpec.describe "Post Request with New Favorite Recipe" do
       expect(recipe.id).not_to eq(@body[:id])
       expect(recipe.recipe_id).to eq(@body[:id])
       expect(recipe.user_id).to eq(@body[:user_id])
-      expect(recipe.name).to eq(@body[:name])
-      expect(recipe.description).to eq(@body[:description])
-      expect(recipe.time_to_cook).to eq(@body[:time_to_cook])
-      expect(recipe.nutrient).to eq(@body[:nutrient])
-      expect(recipe.health_benefits).to eq(@body[:health_benefits])
-      expect(recipe.ingredients).to eq(@body[:ingredients].join("*separator*"))
-      expect(recipe.instructions).to eq(@body[:instructions].join("*separator*"))
+      expect(recipe.name).to eq(@body[:attributes][:name])
+      expect(recipe.description).to eq(@body[:attributes][:description])
+      expect(recipe.time_to_cook).to eq(@body[:attributes][:time_to_cook])
+      expect(recipe.nutrient).to eq(@body[:attributes][:nutrient])
+      expect(recipe.health_benefits).to eq(@body[:attributes][:health_benefits])
+      expect(recipe.ingredients).to eq(@body[:attributes][:ingredients].join("*separator*"))
+      expect(recipe.instructions).to eq(@body[:attributes][:instructions].join("*separator*"))
     end
   end
 
