@@ -58,7 +58,7 @@ RSpec.describe FavoriteRecipe do
         recipe_id = FavoriteRecipe.all.first.recipe_id
         recipe = FavoriteRecipe.all.first
 
-        expect(FavoriteRecipe.find_single_favorite(1, recipe_id)).to eq(recipe)
+        expect(FavoriteRecipe.find_single_favorite(1, recipe_id.to_s)).to eq(recipe)
       end
     end
   end

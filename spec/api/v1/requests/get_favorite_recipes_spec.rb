@@ -25,7 +25,7 @@ RSpec.describe "Get Favorite Recipes via GET HTTP Request" do
 
       data.each do |recipe|
         expect(recipe).to have_key(:id)
-        expect(recipe[:id]).to be_a(Integer)
+        expect(recipe[:id]).to be_a(String)
         expect(recipe).to have_key(:type)
         expect(recipe[:type]).to be_a(String)
         expect(recipe).to have_key(:attributes)

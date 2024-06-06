@@ -25,6 +25,6 @@ class FavoriteRecipe < ApplicationRecord
   end
 
   def self.find_single_favorite(user_id, recipe_id)
-    where("user_id = #{user_id} AND recipe_id = #{recipe_id}").first
+    where(user_id: user_id, recipe_id: recipe_id).first
   end
 end

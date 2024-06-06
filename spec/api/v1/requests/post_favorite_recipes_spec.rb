@@ -34,7 +34,7 @@ RSpec.describe "Post Request with New Favorite Recipe" do
       recipe = FavoriteRecipe.find_by(recipe_id: @body[:id])
       
       expect(recipe.id).not_to eq(@body[:id])
-      expect(recipe.recipe_id).to eq(@body[:id])
+      expect(recipe.recipe_id).to eq(@body[:id].to_s)
       expect(recipe.user_id).to eq(@body[:user_id])
       expect(recipe.name).to eq(@body[:attributes][:name])
       expect(recipe.description).to eq(@body[:attributes][:description])
