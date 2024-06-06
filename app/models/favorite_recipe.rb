@@ -1,5 +1,5 @@
 class FavoriteRecipe < ApplicationRecord
-  validates :recipe_id, :user_id, :name, :description, :nutrient, :health_benefits, :image, :ingredients, :instructions, presence: true
+  validates :recipe_id, :user_id, :name, :description, :nutrient, :health_benefits, :ingredients, :instructions, presence: true
   validates :time_to_cook, presence: true, numericality: true
   validates :recipe_id, uniqueness: {scope: :user_id}
 

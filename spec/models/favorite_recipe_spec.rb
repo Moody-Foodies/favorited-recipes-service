@@ -10,7 +10,6 @@ RSpec.describe FavoriteRecipe do
     it { should validate_numericality_of(:time_to_cook) }
     it { should validate_presence_of(:nutrient) }
     it { should validate_presence_of(:health_benefits) }
-    it { should validate_presence_of(:image) }
     it { should validate_presence_of(:ingredients) }
     it { should validate_presence_of(:instructions) }
   end
