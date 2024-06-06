@@ -5,9 +5,12 @@ class FavoriteRecipe < ApplicationRecord
 
   def self.create_new_record(attributes_info)
     attributes_info[:recipe_id] = attributes_info.delete :id
-    if attributes_info[:ingredients] && attributes_info[:instructions]
+    if attributes_info[:ingredients] && attributes_info[:instructions] && attributes_info[:instructions].count > 1
       attributes_info[:ingredients] = attributes_info[:ingredients].join("*separator*")
       attributes_info[:instructions] = attributes_info[:instructions].join("*separator*")
+    elsif attributes_info[:ingredients] && attributes_info[:instructions] && attributes_info[:instructions].count == 1
+      attributes_info[:ingredients] = attributes_info[:ingredients].join("*separator*")
+      attributes_info[:instructions] = attributes_info[:instructions].first
     end
     FavoriteRecipe.create!(attributes_info)
   end
